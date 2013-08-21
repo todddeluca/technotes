@@ -1,0 +1,66 @@
+# brief primer on cron job format.  for more, see http://www.unixgeeks.org/security/newbie/unix/cron-1.html or google cron tutorial
+# minofhour 24hourofday dayofmonth monthofyear dayofweek(0=sunday,6=saturday) commandline
+
+# Minute = Minute of the hour, 00 to 59. * Will indicate every minute (details later)
+# Hour = Hour of the day in 24-hour format, 00 to 23. * Will indicate every hour (details later)
+# Day = Day of the month, 1 to 31. * Will indicate every day (details later)
+# Month = Month of the year, 1 to 12. * Will indicate every month (details later)
+# Day = Day of the week, 3 chars - sun, mon, tue, or numeric (0=sun, 1=mon etc).... * Will indicate every day (details later)
+# Task = The command you want to execute 
+
+# to run a command every 5 minutes:
+# 0,5,10,15,20,25,30,35,40,45,50,55 * * * * /path/to/command
+# or
+# */5 * * * * /path/to/command
+
+
+# to specify where to mail the job output, put this (uncommmented) before the command
+# MAILTO=cron@username.plus.com
+
+# ABSOLUTE PATHS: 
+# cron does not have $PATH defined the way you have it defined when you are
+# logged in, so use absolute paths in commands
+# alternatively, run your .bashrc (or equivalent) script before the command
+# * * * * * . /home/td23/.bash_profile && printenv
+
+# to set up use of lsf, python (from the environment), etc., replace <command> with:
+# . /home/td23/.bash_profile && <command>
+# since cron runs jobs as the user but without logging in, this is necessary to run a bsub command or python2.4,
+# both of which are set up in my bash profile.
+
+# if changing a command which redirects output, e.g. foo > bar, to run on lsf,
+# put command in quotes or else redirection will redirect bsub output, not command output:
+# . /home/td23/.bash_profile && bsub 'foo > bar'
+
+# example commands
+# 17 11 * * * echo $PATH
+
+
+#################
+# DEFINE ENV VARS
+
+# SHELL=/bin/bash
+# PATH=/sbin:/bin:/usr/sbin:/usr/bin
+# MAILTO=root
+# HOME=/
+MAILTO=todddeluca@gmail.com
+
+
+############
+# MONITORING
+
+# make sure the ec2 instance is serving todddeluca.com
+0,30 * * * * curl -s -S http://www.todddeluca.com > /dev/null
+
+
+########
+# BACKUP 
+
+# BACKUP NOTES TO ORCHESTRA every day at 12:30 pm.
+# no longer backing up notes.  using Apple TimeMachine instead.
+# 30 12 * * * cd /Users/td23/Documents && tar cvzf notes.tar.gz notes && chmod 660 notes.tar.gz && rsync -av notes.tar.gz orchestra.med.harvard.edu:bak/. && rm -f notes.tar.gz
+
+# backup papers to orchestra
+40 12 * * * rsync -avz /Users/td23/Documents/papers orchestra.med.harvard.edu:bak/.
+
+

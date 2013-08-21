@@ -1,0 +1,466 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+	"http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+
+<head>
+	<title>The Vim commands cheat sheet</title>
+	<link rel="shortcut icon" href="../pix/pingu.gif" type="image/gif" />
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-15" />
+	<meta name="description" content="A Vim cheat sheet, listing some useful, essential and most often used Vim commands." />
+	<meta name="keywords" content="vim commands, vim cheat sheet, vim cheatsheet, list of vim commands, tuxfiles, tuXfiles" />
+	<link rel="stylesheet" href="../sucky.css" type="text/css" />
+	<link rel="stylesheet" href="../cool.css" type="text/css" media="all" />
+	<link rel="stylesheet" href="../print.css" type="text/css" media="print" />
+</head>
+
+<body>
+
+<!-- So, you little PERV like to have a lookie lookie at other websites' sources, huh? Well, luckily I don't mind, so feel free to check out this source and do whatever dirty perverted things you fantasize about. -->
+
+<!-- Oh... one more thing: CSS r0x0rz j00 b0x0rz!!! :-P -->
+
+<!-- The TOP stuff start -->
+<div class="bigtop">
+	<h1 class="navtop">
+		<img class="tuxfiles" src="../pix/tuxfiles.png" width="400" height="66" alt="tuXfiles" />
+		<img class="penguin" src="../pix/linux-penguin.png" width="130" height="66" alt="-- The Linux newbie tutorials" />
+	</h1>
+
+	<div class="navdiv">
+		<div class="navlinx">
+			<a href="../">&lt;<span class="navlink">home</span>&gt;</a>
+			<span class="navnonsense">&lt;<span class="navcurrent">Linux help</span>&gt;</span>
+			<a href="../linuxlinks/">&lt;<span class="navlink">directory</span>&gt;</a>
+			<a href="../about.html">&lt;<span class="navlink">who?</span>&gt;</a>
+			<a href="../contact.html">&lt;<span class="navlink">contact</span>&gt;</a>
+			<a href="../search.html">&lt;<span class="navlink">search</span>&gt;</a>
+		</div>
+	</div>
+</div><!-- The TOP stop (ehehehe how witty :-) -->
+
+<!-- The MAIN things start -->
+<div class="bigback">
+
+<!-- The MIDDLE 1 stuff start -->
+<div class="middle21">
+	<div class="mainback">
+	<div class="maintext">
+		<h1 class="mnonsense">&lt; <strong><span class="mtitle">The Vim commands cheat sheet - 1.2</span></strong> &gt;</h1>
+		<p>A Vim cheat sheet, listing some useful, essential and most often used Vim commands.</p>
+		<p><span class="tuxinfo">Author:</span> Nana L&aring;ngstedt &lt; nana.langstedt at gmail.com &gt;<br />
+		<span class="tuxinfo">tuXfile created:</span> 18 January 2003<br />
+		<span class="tuxinfo">Last modified:</span> 5 September 2009</p>
+	</div>
+	</div>
+	<br />
+
+</div>
+<!-- The MIDDLE 1 stuff end -->
+
+<!-- The SIDEBOXES stuff start -->
+<div class="sboxleft" id="tuxnav">
+	<h2 class="sbtitle" id="printtitle">contents</h2>
+	<ul class="sblinx" id="printcon">
+		<li><a href="vimcheat.html#files">Working with files</a></li>
+		<li><a href="vimcheat.html#nav">Moving around in the file</a></li>
+		<li><a href="vimcheat.html#insert">Inserting and overwriting text</a></li>
+		<li><a href="vimcheat.html#delete">Deleting text</a></li>
+		<li><a href="vimcheat.html#visual">Entering visual mode</a></li>
+		<li><a href="vimcheat.html#visualcom">Editing blocks of text</a></li>
+		<li><a href="vimcheat.html#ooopsie">Undo and redo</a></li>
+		<li><a href="vimcheat.html#search">Search</a></li>
+		<li><a href="vimcheat.html#replace">Replace</a></li>
+	</ul>
+	<br />
+
+	<h3 class="sbtitle" id="noprint">back to</h3>
+	<ul class="sblinx" id="noprint2">
+		<li><a href="linuxtips.html">Tips and cheat sheets</a></li>
+		<li><a href="./">Linux help</a></li>
+		<li><a href="../">tuXfiles home</a></li>
+	</ul>
+	<br />
+
+</div>
+<!-- the SIDEBOXES stuff end -->
+
+<!-- The MIDDLE 2 stuff start -->
+<div class="middle22">
+	<div class="mainback">
+	<div class="maintext">
+		<h2 class="mnonsense">&lt; <strong><span class="mtitle">The list of Vim commands</span></strong> &gt;</h2>
+		<div class="tuxtbl">
+		<table border="1" cellpadding="5" cellspacing="0" class="tuxtable">
+		<tbody>
+		<tr>
+		<td class="tuxtitle" colspan="2" id="files"><em><strong>Working with files</strong></em></td>
+		</tr>
+		<tr>
+		<td class="tuxtext"><em>Vim command</em></td>
+		<td class="tuxtext"><em>Action</em></td>
+		</tr>
+		<tr>
+		<td class="tuxtext">:e filename</td>
+		<td class="tuxtext">Open a new file. You can use the Tab key for automatic file name completion, just like at the shell command prompt.</td>
+		</tr>
+		<tr>
+		<td class="tuxtext">:w filename</td>
+		<td class="tuxtext">Save changes to a file. If you don't specify a file name, Vim saves as the file name you were editing. For saving the file under a different name, specify the file name.</td>
+		</tr>
+		<tr>
+		<td class="tuxtext">:q</td>
+		<td class="tuxtext">Quit Vim. If you have unsaved changes, Vim refuses to exit.</td>
+		</tr>
+		<tr>
+		<td class="tuxtext">:q!</td>
+		<td class="tuxtext">Exit Vim without saving changes.</td>
+		</tr>
+		<tr>
+		<td class="tuxtext">:wq</td>
+		<td class="tuxtext">Write the file and exit.</td>
+		</tr>
+		<tr>
+		<td class="tuxtext">:x</td>
+		<td class="tuxtext">Almost the same as :wq, write the file and exit if you've made changes to the file. If you haven't made any changes to the file, Vim exits without writing the file.</td>
+		</tr>
+		<tr>
+		<td class="tuxtitle" colspan="2" id="nav"><em><strong>Moving around in the file</strong></em></td>
+		</tr>
+		<tr>
+		<td class="tuxtext" colspan="2">These Vim commands and keys work both in command mode and visual mode.</td>
+		</tr>
+		<tr>
+		<td class="tuxtext"><em>Vim command</em></td>
+		<td class="tuxtext"><em>Action</em></td>
+		</tr>
+		<tr>
+		<td class="tuxtext">j or Up Arrow</td>
+		<td class="tuxtext">Move the cursor up one line.</td>
+		</tr>
+		<tr>
+		<td class="tuxtext">k or Down Arrow</td>
+		<td class="tuxtext">Down one line.</td>
+		</tr>
+		<tr>
+		<td class="tuxtext">h or Left Arrow</td>
+		<td class="tuxtext">Left one character.</td>
+		</tr>
+		<tr>
+		<td class="tuxtext">l or Right Arrow</td>
+		<td class="tuxtext">Right one character.</td>
+		</tr>
+		<tr>
+		<td class="tuxtext">e</td>
+		<td class="tuxtext">To the end of a word.</td>
+		</tr>
+		<tr>
+		<td class="tuxtext">E</td>
+		<td class="tuxtext">To the end of a whitespace-delimited word.</td>
+		</tr>
+		<tr>
+		<td class="tuxtext">b</td>
+		<td class="tuxtext">To the beginning of a word.</td>
+		</tr>
+		<tr>
+		<td class="tuxtext">B</td>
+		<td class="tuxtext">To the beginning of a whitespace-delimited word.</td>
+		</tr>
+		<tr>
+		<td class="tuxtext">0</td>
+		<td class="tuxtext">To the beginning of a line.</td>
+		</tr>
+		<tr>
+		<td class="tuxtext">^</td>
+		<td class="tuxtext">To the first non-whitespace character of a line.</td>
+		</tr>
+		<tr>
+		<td class="tuxtext">$</td>
+		<td class="tuxtext">To the end of a line.</td>
+		</tr>
+		<tr>
+		<td class="tuxtext">H</td>
+		<td class="tuxtext">To the first line of the screen.</td>
+		</tr>
+		<tr>
+		<td class="tuxtext">M</td>
+		<td class="tuxtext">To the middle line of the screen.</td>
+		</tr>
+		<tr>
+		<td class="tuxtext">L</td>
+		<td class="tuxtext">To the the last line of the screen.</td>
+		</tr>
+		<tr>
+		<td class="tuxtext">:<em>n</em></td>
+		<td class="tuxtext">Jump to line number <em>n</em>. For example, to jump to line 42, you'd type :42</td>
+		</tr>
+		<tr>
+		<td class="tuxtitle" colspan="2" id="insert"><em><strong>Inserting and overwriting text</strong></em></td>
+		</tr>
+		<tr>
+		<td class="tuxtext"><em>Vim command</em></td>
+		<td class="tuxtext"><em>Action</em></td>
+		</tr>
+		<tr>
+		<td class="tuxtext">i</td>
+		<td class="tuxtext">Insert before cursor.</td>
+		</tr>
+		<tr>
+		<td class="tuxtext">I</td>
+		<td class="tuxtext">Insert to the start of the current line.</td>
+		</tr>
+		<tr>
+		<td class="tuxtext">a</td>
+		<td class="tuxtext">Append after cursor.</td>
+		</tr>
+		<tr>
+		<td class="tuxtext">A</td>
+		<td class="tuxtext">Append to the end of the current line.</td>
+		</tr>
+		<tr>
+		<td class="tuxtext">o</td>
+		<td class="tuxtext">Open a new line below and insert.</td>
+		</tr>
+		<tr>
+		<td class="tuxtext">O</td>
+		<td class="tuxtext">Open a new line above and insert.</td>
+		</tr>
+		<tr>
+		<td class="tuxtext">C</td>
+		<td class="tuxtext">Change the rest of the current line.</td>
+		</tr>
+		<tr>
+		<td class="tuxtext">r</td>
+		<td class="tuxtext">Overwrite one character. After overwriting the single character, go back to command mode.</td>
+		</tr>
+		<tr>
+		<td class="tuxtext">R</td>
+		<td class="tuxtext">Enter insert mode but replace characters rather than inserting.</td>
+		</tr>
+		<tr>
+		<td class="tuxtext">The ESC key</td>
+		<td class="tuxtext">Exit insert/overwrite mode and go back to command mode.</td>
+		</tr>
+		<tr>
+		<td class="tuxtitle" colspan="2" id="delete"><em><strong>Deleting text</strong></em></td>
+		</tr>
+		<tr>
+		<td class="tuxtext"><em>Vim command</em></td>
+		<td class="tuxtext"><em>Action</em></td>
+		</tr>
+		<tr>
+		<td class="tuxtext">x</td>
+		<td class="tuxtext">Delete characters under the cursor.</td>
+		</tr>
+		<tr>
+		<td class="tuxtext">X</td>
+		<td class="tuxtext">Delete characters before the cursor.</td>
+		</tr>
+		<tr>
+		<td class="tuxtext">dd or :d</td>
+		<td class="tuxtext">Delete the current line.</td>
+		</tr>
+		<tr>
+		<td class="tuxtitle" colspan="2" id="visual"><em><strong>Entering visual mode</strong></em></td>
+		</tr>
+		<tr>
+		<td class="tuxtext"><em>Vim command</em></td>
+		<td class="tuxtext"><em>Action</em></td>
+		</tr>
+		<tr>
+		<td class="tuxtext">v</td>
+		<td class="tuxtext">Start highlighting characters. Use the normal <a href="vimcheat.html#nav">movement keys and commands</a> to select text for highlighting.</td>
+		</tr>
+		<tr>
+		<td class="tuxtext">V</td>
+		<td class="tuxtext">Start highlighting lines.</td>
+		</tr>
+		<tr>
+		<td class="tuxtext">The ESC key</td>
+		<td class="tuxtext">Exit visual mode and return to command mode.</td>
+		</tr>
+		<tr>
+		<td class="tuxtitle" colspan="2" id="visualcom"><em><strong>Editing blocks of text</strong></em></td>
+		</tr>
+		<tr>
+		<td class="tuxtext" colspan="2">Note: the Vim commands marked with (V) work in visual mode, when you've selected some text. The other commands work in the command mode, when you haven't selected any text.</td>
+		</tr>
+		<tr>
+		<td class="tuxtext"><em>Vim command</em></td>
+		<td class="tuxtext"><em>Action</em></td>
+		</tr>
+		<tr>
+		<td class="tuxtext">~</td>
+		<td class="tuxtext">Change the case of characters. This works both in visual and command mode. In visual mode, change the case of highlighted characters. In command mode, change the case of the character uder cursor.</td>
+		</tr>
+		<tr>
+		<td class="tuxtext">&gt; (V)</td>
+		<td class="tuxtext">Shift right (indent).</td>
+		</tr>
+		<tr>
+		<td class="tuxtext">&lt; (V)</td>
+		<td class="tuxtext">Shift left (de-indent).</td>
+		</tr>
+		<tr>
+		<td class="tuxtext">c (V)</td>
+		<td class="tuxtext">Change the highlighted text.</td>
+		</tr>
+		<tr>
+		<td class="tuxtext">y (V)</td>
+		<td class="tuxtext">Yank the highlighted text. In Windows terms, "copy the selected text to clipboard."</td>
+		</tr>
+		<tr>
+		<td class="tuxtext">d (V)</td>
+		<td class="tuxtext">Delete the highlighted text. In Windows terms, "cut the selected text to clipboard."</td>
+		</tr>
+		<tr>
+		<td class="tuxtext">yy or :y or Y</td>
+		<td class="tuxtext">Yank the current line. You don't need to highlight it first.</td>
+		</tr>
+		<tr>
+		<td class="tuxtext">dd or :d</td>
+		<td class="tuxtext">Delete the current line. Again, you don't need to highlight it first.</td>
+		</tr>
+		<tr>
+		<td class="tuxtext">p</td>
+		<td class="tuxtext">Put the text you yanked or deleted. In Windows terms, "paste the contents of the clipboard". Put characters after the cursor. Put lines below the current line.</td>
+		</tr>
+		<tr>
+		<td class="tuxtext">P</td>
+		<td class="tuxtext">Put characters before the cursor. Put lines above the current line.</td>
+		</tr>
+		<tr>
+		<td class="tuxtitle" colspan="2" id="ooopsie"><em><strong>Undo and redo</strong></em></td>
+		</tr>
+		<tr>
+		<td class="tuxtext"><em>Vim command</em></td>
+		<td class="tuxtext"><em>Action</em></td>
+		</tr>
+		<tr>
+		<td class="tuxtext">u</td>
+		<td class="tuxtext">Undo the last action.</td>
+		</tr>
+		<tr>
+		<td class="tuxtext">U</td>
+		<td class="tuxtext">Undo all the latest changes that were made to the current line.</td>
+		</tr>
+		<tr>
+		<td class="tuxtext">Ctrl + r</td>
+		<td class="tuxtext">Redo.</td>
+		</tr>
+		<tr>
+		<td class="tuxtitle" colspan="2" id="search"><em><strong>Search</strong></em></td>
+		</tr>
+		<tr>
+		<td class="tuxtext"><em>Vim command</em></td>
+		<td class="tuxtext"><em>Action</em></td>
+		</tr>
+		<tr>
+		<td class="tuxtext">/<em>pattern</em></td>
+		<td class="tuxtext">Search the file for <em>pattern</em>.</td>
+		</tr>
+		<tr>
+		<td class="tuxtext">n</td>
+		<td class="tuxtext">Scan for next search match in the same direction.</td>
+		</tr>
+		<tr>
+		<td class="tuxtext">N</td>
+		<td class="tuxtext">Scan for next search match but opposite direction.</td>
+		</tr>
+		<tr>
+		<td class="tuxtitle" colspan="2" id="replace"><em><strong>Replace</strong></em></td>
+		</tr>
+		<tr>
+		<td class="tuxtext"><em>Vim command</em></td>
+		<td class="tuxtext"><em>Action</em></td>
+		</tr>
+		<tr>
+		<td class="tuxtext">:<em>r</em>s/<em>foo</em>/<em>bar</em>/<em>a</em></td>
+		<td class="tuxtext">Substitute <em>foo</em> with <em>bar</em>. <em>r</em> determines the range and <em>a</em> determines the arguments.</td>
+		</tr>
+		<tr>
+		<td class="tuxtext" colspan="2">The range (<em>r</em>) can be</td>
+		</tr>
+		<tr>
+		<td class="tuxtext">nothing</td>
+		<td class="tuxtext">Work on current line only.</td>
+		</tr>
+		<tr>
+		<td class="tuxtext">number</td>
+		<td class="tuxtext">Work on the line whose number you give.</td>
+		</tr>
+		<tr>
+		<td class="tuxtext">%</td>
+		<td class="tuxtext">The whole file.</td>
+		</tr>
+		<tr>
+		<td class="tuxtext" colspan="2">Arguments (<em>a</em>) can be</td>
+		</tr>
+		<tr>
+		<td class="tuxtext">g</td>
+		<td class="tuxtext">Replace all occurrences in the line. Without this, Vim replaces only the first occurrences in each line.</td>
+		</tr>
+		<tr>
+		<td class="tuxtext">i</td>
+		<td class="tuxtext">Ignore case for the search pattern.</td>
+		</tr>
+		<tr>
+		<td class="tuxtext">I</td>
+		<td class="tuxtext">Don't ignore case.</td>
+		</tr>
+		<tr>
+		<td class="tuxtext">c</td>
+		<td class="tuxtext">Confirm each substitution. You can type y to substitute this match, n to skip this match, a to substitute this and all the remaining matches ("Yes to all"), and q to quit substitution.</td>
+		</tr>
+		<tr>
+		<td class="tuxtext" colspan="2">Examples</td>
+		</tr>
+		<tr>
+		<td class="tuxtext">:452s/<em>foo</em>/<em>bar</em>/</td>
+		<td class="tuxtext">Replace the first occurrence of the word <em>foo</em> with <em>bar</em> on line number 452.</td>
+		</tr>
+		<tr>
+		<td class="tuxtext">:s/<em>foo</em>/<em>bar</em>/g</td>
+		<td class="tuxtext">Replace every occurrence of the word <em>foo</em> with <em>bar</em> on current line.</td>
+		</tr>
+		<tr>
+		<td class="tuxtext">:%s/<em>foo</em>/<em>bar</em>/g</td>
+		<td class="tuxtext">Replace every occurrence of the word <em>foo</em> with <em>bar</em> in the whole file.</td>
+		</tr>
+		<tr>
+		<td class="tuxtext">:%s/<em>foo</em>/<em>bar</em>/gi</td>
+		<td class="tuxtext">The same as above, but ignore the case of the pattern you want to substitute. This replaces <em>foo</em>, <em>FOO</em>, <em>Foo</em>, and so on.</td>
+		</tr>
+		<tr>
+		<td class="tuxtext">:%s/<em>foo</em>/<em>bar</em>/gc</td>
+		<td class="tuxtext">Confirm every substitution.</td>
+		</tr>
+		<tr>
+		<td class="tuxtext">:%s/<em>foo</em>/<em>bar</em>/c</td>
+		<td class="tuxtext">For each line on the file, replace the first occurrence of <em>foo</em> with <em>bar</em> and confirm every substitution.</td>
+		</tr>
+		</tbody>
+		</table>
+		</div>
+	</div>
+	</div>
+	<br />
+
+	<div class="mainback">
+	<div class="maintext">
+		<p class="mnonsense"><strong><a href="./">Linux help</a> &gt; <a href="linuxtips.html">Tips and cheat sheets</a> &gt; <span class="mtitle">The Vim commands cheat sheet</span></strong></p>
+	</div>
+	</div>
+	<br />
+
+	<div class="bottompix">
+	<p>Copyright &copy; 2001 - 2011 Nana L&aring;ngstedt</p>
+</div></div>
+<!-- The MIDDLE 2 stuff end -->
+
+</div>
+<!-- The MAIN things end -->
+
+</body>
+
+</html>
