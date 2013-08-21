@@ -106,7 +106,7 @@ about compound expressions:
 - `-and` is implicitly inserted between adjacent atomic expressions.  This
   means `expr1 epxr2` is equivalent to `expr1 -and expr2`.  Combined with order
   of precendence it means that `expr1 -or expr2 expr3` is equivalent to `expr1
-  -or ( epxr2 -and expr3 )`.  Parentheses are used hear to illustrate the order
+  -or ( epxr2 -and expr3 )`.  Parentheses are used here to illustrate the order
   of precendence.
 - sub-expressions can be any atomic expression, including actions that have
   side effects (e.g. -delete, -print, -exec), or another compound expression.
@@ -127,9 +127,10 @@ evaluation][sc] to apply an action to only some paths:
 ### Expressions with side effects
 
 A find expression is expected to have some kind of side effect.  Otherwise
-there would be no point in running the command!  Some expressions contain an
-action that has a side effect.  For those that do not, an implicit `-print`
-action is used.
+there would be no point in running the command!  (Well, I suppose there could
+be a reason like putting directory and file metadata into the filesystem
+cache.) For expressions that contain no actions with side effects, an implicit
+`-print` action is used.
 
 #### The default print side effect
 
