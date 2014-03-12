@@ -4,11 +4,13 @@ up a new mac is consistent, repeatable, and easier.
 
 # Automated installation
 
-Here is an article about using chef to automate the setup of a Mac:
+There are a (growing) number of resources for automating the setup of a Mac OS X developer machine.
 
-"Automating the Setup of My Perfect Developer Environment on OSX 10.8 Mountain Lion"
-http://vanderveer.be/blog/2013/01/02/automating-the-setup-of-my-perfect-developer-environment-on-osx-10-dot-8-mountain-lion/
-
+- "Automating the Setup of My Perfect Developer Environment on OSX 10.8 Mountain Lion" http://vanderveer.be/blog/2013/01/02/automating-the-setup-of-my-perfect-developer-environment-on-osx-10-dot-8-mountain-lion/
+- Mac Development Ansible Playbook: https://github.com/geerlingguy/mac-dev-playbook
+- Battleschool: http://spencer.gibb.us/blog/2014/02/03/introducing-battleschool/
+- Boxen
+-
 
 # Install PCKeyboardHack
 
@@ -62,7 +64,7 @@ connection.
 - Install it.
 
 After installing Xcode, you still need to install the command line
-tools as follows: 
+tools as follows:
 
 - Go to Preferences > Downloads.
 - Choose to install the command line tools.  (Since XCode 4.5 or so).
@@ -77,7 +79,7 @@ Fix the permissions the installer tweeks on `/usr/local` by changing the owner f
 Create dirs for installing local frameworks and applications.  Homebrew
 sometimes links installed apps and frameworks into these dirs.
 
-    mkdir -p ~/Applications ~/Frameworks ~/bin 
+    mkdir -p ~/Applications ~/Frameworks ~/bin
 
 Some other dirs used by scripts like `~/bin/backup`, etc:
 
@@ -211,6 +213,10 @@ https://www.google.com/intl/en/chrome/browser/
 Also install "GoogleVoiceAndVideoSetup.dmg", the Hangouts video and voice
 chatting plugin, needed for chatting and using Google Voice to make calls.
 
+# Install Adobe Reader
+
+This is so I can read and sign adobe forms.
+
 
 # Install iTerm2
 
@@ -243,7 +249,7 @@ Configure Dock:
     Make the Size small.
     Position on screen: Left.
     Select "Automatically hide and show Dock".
-    
+
 Configure Finder Sidebar:
 
     Finder > Preferences > Sidebar
@@ -342,13 +348,13 @@ this.
   ~/.ssh perms should be set to 700.  I found out about this by looking at
   /var/log/secure.log.  The following restricted permissions seem to work for
   me:
-    
+
         chmod 755 ~
         chmod 700 ~/.ssh
         chmod 600 ~/.ssh/id_dsa
         chmod 644 ~/.ssh/id_dsa.pub
         chmod 600 ~/.ssh/authorized_keys
-    
+
 - In my ~/.bashrc I was running some commands  that I only should have been
   running in an interactive shell, like `ssh-add` b/c they were failing when
   executing in a non-interactive shell.  This happened when opening a
@@ -471,7 +477,7 @@ Get all my data from orchestra:
     rsync -avzhP --stats td23@orchestra.med.harvard.edu:/groups/cbi/td23/data ~/
 
 Get my deployed "vanvactor_mirna" project from Orchestra:
-    
+
     mkdir -p ~/deploy ~/data
     rsync -avzhP --stats td23@orchestra.med.harvard.edu:/groups/cbi/td23/backup/deploy/vanvactor_mirna ~/deploy/
     rsync -avzhP --stats td23@orchestra.med.harvard.edu:/groups/cbi/td23/backup/data/work ~/data/
@@ -484,13 +490,13 @@ Install packages for python2:
 
     # virtualenv is a tool to create isolated Python environments.  
     pip install virtualenv
-    # Fabric for deploying to remote hosts 
+    # Fabric for deploying to remote hosts
     pip install fabric
     # My own fabric tweaks
     pip install diabric
-    # Install boto for working with EC2 
+    # Install boto for working with EC2
     pip install boto
-    # Install nose for testing 
+    # Install nose for testing
     pip install nose
     # Pyflakes is a simple program which checks Python source files for errors.
     pip install pyflakes
@@ -529,7 +535,7 @@ For more information, google "Postfix SMTP client mac os x" or check out these l
 
 Before running the script below, I created a application-specific password for
 my Google account, 'mac_postfix', because I use two-factor authentication.  I
-added the email environment variables to the secrets/dotfiles/copy/.bash_email 
+added the email environment variables to the secrets/dotfiles/copy/.bash_email
 file that my 'dotfiles' project uses and made ~/.bashrc source .bash_email.
 
 Following the directions in the links above, this script configures
@@ -600,7 +606,7 @@ password) in the script.
     maincf_lines = file_lines(maincf_orig)
     # confirm that these lines are already set
     initial_lines = ['mydomain_fallback = localhost', 'mail_owner = _postfix',
-                    'setgid_group = _postdrop', 
+                    'setgid_group = _postdrop',
                     'tls_random_source = dev:/dev/urandom']
     for line in initial_lines:
         assert line in maincf_lines
@@ -716,7 +722,7 @@ What version of gcc and g++ did I use to compile python2.7 when installed with
 homebrew?  4.2?  I think this means I can install numpy using the default
 compilers of Mac OS X 10.6, which are gcc 4.2
 
-    grep -e '^CC=\|^CXX=' /usr/local/Cellar/python/2.7.3/Frameworks/Python.framework/Versions/2.7/lib/python2.7/config/Makefile 
+    grep -e '^CC=\|^CXX=' /usr/local/Cellar/python/2.7.3/Frameworks/Python.framework/Versions/2.7/lib/python2.7/config/Makefile
     CC=		/usr/bin/gcc-4.2
     CXX=		/usr/bin/g++-4.2
 
@@ -872,7 +878,7 @@ I think this is already installed as part of Accelerate.framework, at least on O
     locate BLAS
     # ...
     # /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk/System/Library/Frameworks/Accelerate.framework/Versions/A/Frameworks/vecLib.framework/Versions/A/Headers/vBLAS.h
-    # ...    
+    # ...
 
 ## nose
 
@@ -1013,7 +1019,3 @@ Link /usr/bin/gcc-4.0 to the binary in the temp dir, so it can be found (with th
 
     sudo ln -s /tmp/testplace/bin/gcc /usr/bin/gcc-4.0
     pip install pycrypto
-
-
-
-
