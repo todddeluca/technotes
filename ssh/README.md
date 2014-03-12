@@ -39,11 +39,33 @@ keys, etc.):
 
 ## Using SSH Agent to Manage Keys
 
-Remove host from known hosts in case the host ip has changed.  This can be
-useful when working with cloud hosts, when one recreates a vm so it has a new
-IP, making ssh balk.
+### Remove host from known hosts in case the host ip has changed.  
+
+Removing a host from known_hosts can be useful when working with cloud hosts.  When one recreates a vm, s.t. it has a new IP or is a new computer on the same IP, ssh balks.  After removing the host, ssh will ask to add it to the known hosts file instead of failing.
+
+Use `ssk-keygen` to remove a host from known_hosts:
 
     ssh-keygen -R <hostname>
+
+### Add keys to ssh-agent and mac os x keychain
+
+The `-K` option stores a passphrase in the Mac OS X keychain.  This avoids retyping it everytime the key is added.
+
+    ssh-add -K ~/.ssh/my_own_id_rsa
+    passphrase: <hidden> 
+
+
+### Remove keys from ssh-agent to avoid errors
+
+I had a problem pushing to github, because ssh or git was trying to use the wrong key.  The error message:
+
+> ERROR: Permission to todddeluca/reciprocal_smallest_distance.git denied to LPM.
+> fatal: The remote end hung up unexpectedly
+
+The solution was to remove all identities from ssh-agent. Then github got the right keypair (id_dsa):
+
+    $ ssh-add -D
+    All identities removed.
 
 
 ## SSH Tunneling
