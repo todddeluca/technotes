@@ -21,7 +21,7 @@ Recommended by Tom Monaghan.
 
 - http://gweezlebur.com/2009/01/19/my-git-workflow.html
 
-More 
+More
 
 - http://eagain.net/articles/git-for-computer-scientists/
 - http://reinh.com/blog/2008/08/27/hack-and-and-ship.html
@@ -38,14 +38,29 @@ Cheatsheet with some useful config aliases:
 - http://cheat.errtheblog.com/s/git/
 
 
-## MERGE vs REBASE 
+## MERGING AND REBASING
 
-http://news.ycombinator.com/item?id=4107469
-http://www.randyfay.com/node/91
+There is some controversy as to whether one should merge or rebase.  Some discussion:
 
-Nice tool for merging conflicts
+- http://news.ycombinator.com/item?id=4107469
+- http://www.randyfay.com/node/91
+- Why Git Pull is Considered Harmful: http://stackoverflow.com/questions/15316601/why-is-git-pull-considered-harmful
+- Why it is not: https://news.ycombinator.com/item?id=7385087
+
+Nice tool for merging conflicts:
 
     git mergetool
+
+Rebasing master branch on a remote master branch.  Let's say you make a few commits to master.  Meanwhile, a few pull requests come in, which you merge into the remote master.  Now you want to rebase your local commits onto the new upstream head.  Fetch the remote master changes, then rebase the local master onto the remote one:
+
+    git fetch origin            # Updates origin/master
+    git rebase origin/master    # Rebases current branch onto origin/master
+
+Or in a single step:
+
+    git pull --rebase origin master
+
+Source: http://stackoverflow.com/questions/7929369/how-to-rebase-local-branch-with-remote-master
 
 
 ## GITHUB FLOW MODEL
@@ -198,7 +213,7 @@ For more information see:
 
 ## PUSHING
 
-Push changes to a remote 
+Push changes to a remote
 The default is origin
 Specify the branch (refspec) to push a specific branch which can be useful
 to create a new branch in the remote
@@ -310,7 +325,7 @@ Optional step for testing: mock-up an existing local repo with a few commits.
     git init bar.git
     cd bar.git/
     echo 'testing' > README.txt
-    git add README.txt 
+    git add README.txt
     git commit -a -m 'new repo'
     echo 'a change' >> README.txt
     git commit -a -m 'changes'
@@ -452,7 +467,7 @@ Now we tell git what we to do. Change these lines to:
     squash 977a754 Comment belongs to a User
     squash 9ea48e3 Comment form on Post show page
 
-Save and close the file. This will squash these commits together into one commit and present us with a new editor window where we can give the new commit a message. WeÕll use the story id and title for the subject and list the original commit messages in the body:
+Save and close the file. This will squash these commits together into one commit and present us with a new editor window where we can give the new commit a message. Weï¿½ll use the story id and title for the subject and list the original commit messages in the body:
 
     [#3275] User Can Add A Comment To a Post
     * Adding Comment model, migrations, spec
@@ -478,6 +493,7 @@ The `--` is there to avoid accidentally checking out a branch in case the branch
 
 
 ## EXPORT A REPOSITORY
+
 
 http://stackoverflow.com/questions/160608/how-to-do-a-git-export-like-svn-export
 
@@ -587,7 +603,3 @@ The entry will look something like this:
 Remove the submodule files/dir.  Note: do NOT add a trailing slash.
 
     git rm --cached bundle/python.vim
-
-
-
-

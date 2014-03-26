@@ -228,6 +228,9 @@ Configure iTerm2 so that one can scrollback when using tmux or screen.
     Preferences > Profiles > Terminal
     Save lines to scrollback when an app status bar is present.
 
+# Install Julia
+
+Download and install it from http://julialang.org/downloads/.
 
 
 # Configure OS X

@@ -11,19 +11,20 @@ Go to https://www.virtualbox.org/wiki/Downloads and download and install Virtual
 
 ### Step 2: Download and install Vagrant
 
-Go to http://downloads.vagrantup.com/tags/v1.0.3 and download and install Vagrant for Mac OS X.  Done.
+Go to http://www.vagrantup.com/downloads and download and install Vagrant for Mac OS X.  Done.
 
 ### Step 3: Follow the Getting Started Instructions
 
-http://vagrantup.com/v1/docs/getting-started/index.html
+http://docs.vagrantup.com/v2/getting-started/index.html
 
 Create a directory, download a box, start a Vagrantfile:
 
-    mkdir ~/tech/vagrant/vagrant_guide
+    mkdir -p ~/tmp/vagrant
     cd !$
-    vagrant box add precise64 http://files.vagrantup.com/precise64.box
-    vagrant init
-    mvim Vagrantfile # add precise64 box.
+    vagrant box add trusty64 https://cloud-images.ubuntu.com/vagrant/trusty/current/trusty-server-cloudimg-amd64-vagrant-disk1.box
+    vagrant init trusty64
+    vagrant up
+    vagrant destroy
 
 Run the box a watch the fail!
 
@@ -107,6 +108,3 @@ Another error.  Check the log files again and goole for the next error,
 Continue to follow instructions at
 http://vagrantup.com/v1/docs/getting-started/index.html.  Everything works
 fine.  Yay!
-
-
-
