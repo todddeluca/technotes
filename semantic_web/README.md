@@ -32,19 +32,19 @@ As far as I know Jena ARQ supports the SERVICE clause of SPARQL 1.1 http://jena.
 Sesame is Sparql 1.1 compliant from version 2.4 but honestly I did not try so far if the service clause is supported.
 
 http://sesame-general.435816.n3.nabble.com/Example-of-SPARQL-subquery-where-the-subquery-queries-another-repository-td3894260.html
-For example, here's a simple federated query that looks in a remote 
-SPARQL endpoint (in this case a Sesame repository called 'people' on our 
-own server) for persons called "Bob" and then looks in our local 
-repository for any hobbies of Bob: 
+For example, here's a simple federated query that looks in a remote
+SPARQL endpoint (in this case a Sesame repository called 'people' on our
+own server) for persons called "Bob" and then looks in our local
+repository for any hobbies of Bob:
 
-SELECT ?person ?hobby 
-WHERE { 
- ?person ex:hasHobby ?hobby . 
- SERVICE <http://localhost:8080/openrdf-sesame/repositories/people> { 
-    ?person a ex:Person ; 
-            ex:name "Bob" . 
- } 
-} 
+SELECT ?person ?hobby
+WHERE {
+ ?person ex:hasHobby ?hobby .
+ SERVICE <http://localhost:8080/openrdf-sesame/repositories/people> {
+    ?person a ex:Person ;
+            ex:name "Bob" .
+ }
+}
 
 
 # Python RDF Tools
@@ -162,7 +162,7 @@ only accept the latter.
 
     python -c "import requests
     query = '''
-    PREFIX up:<http://purl.uniprot.org/core/> 
+    PREFIX up:<http://purl.uniprot.org/core/>
     SELECT ?protein
     WHERE
     {
@@ -187,7 +187,7 @@ Here are the results:
     text: {
       "head": {
         "vars": [ "protein" ]
-      }, 
+      },
       "results": {
         "bindings": [
           {
@@ -201,7 +201,7 @@ Here are the results:
 Here is a list of StarDog Accept Headers for Queries (from http://stardog.com/docs/network/#http):
 
 > When issuing a SELECT query the Accept header should be set to one of the valid MIME types for SELECT results:
-> 
+>
 > SPARQL XML Results Format
 > application/sparql-results+xml
 > SPARQL JSON Results Format
@@ -213,7 +213,7 @@ Here is a list of StarDog Accept Headers for Queries (from http://stardog.com/do
 
 The StarDog SPARQL query endpoint is http://<host>[:<port]/<db>/query.  The
 docs (http://www.stardog.com/docs/admin/) tell us that the default port for
-HTTP is 5822.  Therefore, for the `mirna` database on my laptop, the URL for 
+HTTP is 5822.  Therefore, for the `mirna` database on my laptop, the URL for
 the SPARQL query endpoint is `http://localhost:5822/mirna/query`.
 
 Here is an example of querying my local StarDog endpoint.  Notice the user
@@ -239,7 +239,7 @@ and password authentication:
     }'''
     params = {'query': query}
     headers = {'accept': 'application/sparql-results+json'}
-    r = requests.get('http://localhost:5822/mirna/query', params=params, 
+    r = requests.get('http://localhost:5822/mirna/query', params=params,
                     headers=headers, auth=('admin', 'admin'))
     print 'url:', r.url
     print 'code:', r.status_code
@@ -263,8 +263,13 @@ comments too:
 - http://milicicvuk.com/blog/2011/08/02/problems-of-linked-data-34-publishing-data/
 - http://milicicvuk.com/blog/2011/08/04/problems-of-linked-data-44-consuming-data/
 
+Some of my concerns with RDF:
 
-# 
+- Verbose: It seems expansive to say a lot of little things.  Maybe internal representations can be more efficient.
+- Performance: database querying and loading seems very slow and hard to scale, still.
+- Reification: it is difficult to make statements, yet making statements about statements is an interesting and important part of information.  When was a statement made?  Who made the statement?  What version is a statement or is there a more recent statement?  A primary function of RDF is to express statements.
+
+#
 
 Some RDFLib docs that have some examples of how to create a "dataset" and named
 graphs within the dataset:
@@ -318,7 +323,7 @@ default graph.  Loading it into the graph `foo_graph`, puts all 8 triples into `
     # Select all triples in foo_graph.
     time stardog query "test;reasoning=QL" "
         PREFIX ex:<http://example.com/>
-        SELECT ?s ?p ?o 
+        SELECT ?s ?p ?o
         WHERE {
           GRAPH ex:foo_graph {
             ?s ?p ?o .
@@ -466,7 +471,7 @@ the Named Graphs work being conducted by some participants of the Semantic Web
 Interest Group.
 
 > Named Graphs aim at more complex RDF application areas like:
-> 
+>
 > - data syndication and lineage tracing
 > - ontology versioning
 > - modelling context
@@ -476,41 +481,41 @@ Interest Group.
 
 The paper "Modelling Context using Named Graphs" (http://lists.w3.org/Archives/Public/www-archive/2004Feb/att-0072/swig-bizer-carroll.pdf) has some enlightening examples of how one might ACTUALLY represent provenance using named graphs:
 
-> Example: Provenance and Signing 
-> 
->     G1 (Monica ex:hasStatus Admin. 
->         Monica rdf:type ex:Person. 
->         G1 ex:author Andy. 
->         G1 dc:date “2/10/2004”) 
->     G2 (G1 ex:hasSignature “xd2shfl22k4jdsre…”. 
->         G1 ex:Signer Andy) 
->     G3 (Andy ex:publicKeyURL http://bla.bla.bla) 
-> 
-> Example: Simple Provenance Tracking 
-> 
->     G1 (Monica ex:name “Monica Murphy“. 
->         Monica rdf:type ex:Person) 
->     G2 (G1 dc:author Chris. 
->         G1 dc:date “2/10/2004”) 
->     G3 (Monica ex:hasSkill ex:Programming) 
->     G4 (G3 dc:author Peter. 
->         G3 dc:date “2/3/2004”) 
-> 
-> Example: Provenance Chains 
-> Peter states, that Chris said that Andy said, that Monica Murphy is a person. 
-> 
->     G1 (Monica ex:name “Monica Murphy“. 
->         Monica rdf:type ex:Person) 
->     G2 (G1 ex:saidby Andy. 
->         G1 ex:SourceURL Doc1.trix. 
->         G1 dc:date “2/10/2004”) 
->     G3 (G2 ex:saidby Chris. 
->         G2 ex:SourceURL Doc2.trix. 
->         G2 dc:date “2/10/2004”) 
->     G4 (G1 dc:author Peter. 
->         G2 dc:author Peter. 
->         G3 dc:author Peter) 
->     G5 (G4 dc:author Peter. 
+> Example: Provenance and Signing
+>
+>     G1 (Monica ex:hasStatus Admin.
+>         Monica rdf:type ex:Person.
+>         G1 ex:author Andy.
+>         G1 dc:date “2/10/2004”)
+>     G2 (G1 ex:hasSignature “xd2shfl22k4jdsre…”.
+>         G1 ex:Signer Andy)
+>     G3 (Andy ex:publicKeyURL http://bla.bla.bla)
+>
+> Example: Simple Provenance Tracking
+>
+>     G1 (Monica ex:name “Monica Murphy“.
+>         Monica rdf:type ex:Person)
+>     G2 (G1 dc:author Chris.
+>         G1 dc:date “2/10/2004”)
+>     G3 (Monica ex:hasSkill ex:Programming)
+>     G4 (G3 dc:author Peter.
+>         G3 dc:date “2/3/2004”)
+>
+> Example: Provenance Chains
+> Peter states, that Chris said that Andy said, that Monica Murphy is a person.
+>
+>     G1 (Monica ex:name “Monica Murphy“.
+>         Monica rdf:type ex:Person)
+>     G2 (G1 ex:saidby Andy.
+>         G1 ex:SourceURL Doc1.trix.
+>         G1 dc:date “2/10/2004”)
+>     G3 (G2 ex:saidby Chris.
+>         G2 ex:SourceURL Doc2.trix.
+>         G2 dc:date “2/10/2004”)
+>     G4 (G1 dc:author Peter.
+>         G2 dc:author Peter.
+>         G3 dc:author Peter)
+>     G5 (G4 dc:author Peter.
 >         G4 dc:date “2/10/2004”)
 
 
@@ -539,7 +544,7 @@ A partial explanation at http://thing-described-by.org/:
 > URI to name a concept in an ontology, it is helpful to provide a document,
 > accessible via that URI, that tells others what concept the URI is intended to
 > name.
-> 
+>
 > Resource Ambiguity.  However, using the same URI both as the name of the
 > concept and the location of a web page describing that concept creates an
 > ambiguity: Does the URI name the concept or the web page describing the
@@ -558,14 +563,14 @@ content negotiation using Apache.
 > which gives MIME types corresponding to preferred content types. For example,
 > an HTTP client that prefers RDF/XML content might include the following field
 > in the header of each request:
-> 
+>
 >     Accept: application/rdf+xml
-> 
+>
 > Similarly, an HTTP client that prefers HTML content, such as a Web browser,
 > might include something like the following field in the header of each request:
-> 
+>
 >     Accept: application/xhtml+xml,text/html
-> 
+>
 > Uniprot provides an example of purl urls in the wild that provide a level of
 > indirection to a url that handles content negotiation (RDF or HTML) by
 > redirecting to urls that serve RDF or HTML content.
@@ -618,6 +623,3 @@ Accept header it receives:
     Access-Control-Allow-Origin: *
     Access-Control-Allow-Headers: origin, x-requested-with, content-type
     Content-Length: 0
-
-
-
