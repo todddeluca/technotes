@@ -255,7 +255,7 @@ See also https://gist.github.com/569530
     # chgrp -R dev foo.git # Is this necessary?
 
 
-### create a repository from existing codebase
+### Create a repository from existing codebase
 
     cd /path/to/code
 
@@ -271,12 +271,12 @@ Make a new git repo.  the --dry-run is to check for files, like java class files
     git commit -a
 
 
-### create a repository from an existing remote repo
+### Create a repository from an existing remote repo
 
     git clone ssh://td23@orchestra.med.harvard.edu/groups/cbi/git/roundup.git ~/work/roundup
 
 
-## CREATE A GITHUB REPOSITORY FOR AN EXISTING LOCAL REPOSITORY
+### Create a github repository for an existing local repository
 
 If you do not already have a local repository, create one:
 
@@ -309,7 +309,7 @@ Or push all the branches to origin and set upstream tracking
 
 
 
-## MAKE A REMOTE REPO FROM EXISTING LOCAL REPO
+### Make a remote repo from existing local repo
 
     http://toroid.org/ams/git-central-repo-howto
 
@@ -603,3 +603,21 @@ The entry will look something like this:
 Remove the submodule files/dir.  Note: do NOT add a trailing slash.
 
     git rm --cached bundle/python.vim
+
+
+## Add an empty directory to a repository
+
+http://stackoverflow.com/questions/115983/how-do-i-add-an-empty-directory-to-a-git-repository
+
+One way to add an "empty" directory to a git repository is to add a .gitignore
+file to it.  
+
+
+To make a directory stay empty (in the repo), create a .gitignore file inside
+that directory that contains four lines:
+
+    # Ignore everything in this directory
+    *
+    # Except this file
+    !.gitignore
+
