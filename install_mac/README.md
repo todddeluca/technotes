@@ -12,28 +12,19 @@ There are a (growing) number of resources for automating the setup of a Mac OS X
 - Boxen
 -
 
-# Install PCKeyboardHack
+# Install Seil (formerly PCKeyboardHack)
 
 This allows me to map the caps lock key to <esc> on Mac OS X.  For using vim,
 doing so is an ergonomic blessing.
 
-How to:
-http://stackoverflow.com/questions/127591/using-caps-lock-as-esc-in-mac-os-x
-
-Download and install PCKeyboardHack
-http://pqrs.org/macosx/keyremap4macbook/extra.html
-
-Downloaded PCKeyboardHack-9.0.0, open PCKeyboardHack-9.0.0.dmg, right click
-PCKeyboardHac.pkg and choose Open.  Then choose open despite the scary warning
-from the apple gatekeeper.  Install the program and restart the computer.
-
-*Warning!* The installer restarts the computer rather abruptly, so make sure to
-save your work before restarting.
+Download and  and install Seil (formerly PCKeyboardHack).
+https://pqrs.org/osx/karabiner/seil.html
+Open the .dmg file and run the installer.
 
 Map the Caps Lock key to Escape:
 
     Go to System Preferences > Keyboard > Modifier Keys and change Caps Lock to 'No Action'
-    Open PCKeyboardHack
+    Open Seil
     Choose "Change Caps Key" to Keycode 53 (Esc key)
 
 
@@ -52,26 +43,17 @@ Link proj and work dirs into home:
     ln -s ~/Dropbox/technotes ~
 
 
-## Install Xcode And Command Line Tools For Mountain Lion via the App Store
+## Install Xcode or Command Line Developer Tools
 
-Needed to install homebrew, compile code, and I'm not sure what else.
+The command line tools are needed to install homebrew, compile code, and I'm not sure what else.
 
-This is a big install and could take a long time to download on a slow
-connection.  
+Installation instructions can be found at
+http://www.cnet.com/how-to/install-command-line-developer-tools-in-os-x/
 
-- Go to App Store.
-- Search for Xcode.
-- Install it.
-
-After installing Xcode, you still need to install the command line
-tools as follows:
-
-- Go to Preferences > Downloads.
-- Choose to install the command line tools.  (Since XCode 4.5 or so).
-
-Fix the permissions the installer tweeks on `/usr/local` by changing the owner from root to you:
-
-    sudo chown -R `whoami` /usr/local
+> To install these tools, simply open the Terminal, type "make" or any desired
+> common developer command, and press Enter, and then when prompted you can
+> install the developer tools (an approximate 100MB download from Apple), and
+> be up and running.
 
 
 # Create Dirs in Home Dir
@@ -88,11 +70,12 @@ Some other dirs used by scripts like `~/bin/backup`, etc:
 
 # Install and Update Homebrew
 
-This depends on the Xcode command line tools.
+Homebrew is used to install and update many applications/programs on the mac,
+particularly command line ones and developer ones.
 
-Install homebrew if it is not yet installed.  See https://github.com/mxcl/homebrew/wiki/installation:
+Install homebrew if it is not yet installed.  See https://brew.sh/
 
-    ruby -e "$(curl -fsSL https://raw.github.com/mxcl/homebrew/go)"
+    ruby -e "$(curl -fsSL https://raw.github.com/Homebrew/homebrew/go/install)"
 
 Run the brew doctor to see what is broken with your system and installation.
 
@@ -109,7 +92,9 @@ tapping the dupes homebrew formula repository:
 
     brew tap homebrew/dupes
     brew install apple-gcc42
-
+    # Get gcc and gfortran (for scientific computing)
+    # fortran is useful for scientific computing.
+    brew install gcc 
 
 # Homebrew Installs
 
@@ -158,9 +143,8 @@ Some recommendations come from https://github.com/skwp/dotfiles.
     # Install MacVim after ruby and python so it uses the brew installs for them.
     # also overriding the existing (older) system vim.
     # http://apple.stackexchange.com/questions/59375/how-do-i-install-macvim
+    # Requires Xcode (as of 2014/07)
     brew install macvim --override-system-vim
-    # fortran is useful for scientific computing.
-    brew install gfortran
 
     # install NCBI BLAST, PAML and Kalign, which are used by RSD
     brew tap homebrew/science
@@ -171,6 +155,7 @@ Some recommendations come from https://github.com/skwp/dotfiles.
     # install node.js and grunt for reveal.js markdown slideshow app
     brew install node
 
+    # install maven and grails for java development and deployment
     brew linkapps
 
 
@@ -243,8 +228,8 @@ Allow clicking to a specific place in the scrollbar instead of having to drag th
 
 Enable more keyboard accessability to UI controls:
 
-    Go to System Preferences > Keyboard > Keyboard Shortcuts
-    Choose 'All controls' for 'Full Keyboard Acess'
+    Go to System Preferences > Keyboard > Shortcuts
+    Under 'Full Keyboard Access' choose 'All controls'.
 
 Configure Dock:
 
@@ -272,7 +257,7 @@ Configure iTunes:
         Import Using: Select "AAC iTunes Plus" (256kbps stereo, VBR encoding)
         Check "Use error correction when reading Audio CDs"
     iTunes > Preferences > Advanced
-      Change iTunes Media folder location to "~/Music/lossless_20130101
+      Change iTunes Media folder location to something like "~/Music/lossless_20130101"
       Deselect "Copy files to iTunes Media folder when adding to library".
 
 Do not open DVDs with DVD Player
@@ -284,16 +269,15 @@ Do not open DVDs with DVD Player
 Fix paging in Terminal, s.t. page up and page down work in `less`, etc.
 
     Go to Terminal > Preferences > Basic Profile > Keyboard
-    Edit key 'page up' to action 'send string to shell' with '\033[5~' which is <esc>[6~.
-    Edit key 'shift page up' to 'scroll to next page in buffer'
+    Edit key 'page up' to action 'send string to shell' with '\033[5~' which is <esc>[5~.
+    Edit key 'shift page up' to 'Scroll Page Up'
     Edit key 'page down' to action 'send string to shell' with '\033[6~'
-    Edit key 'shift page down' to 'scroll to previous page in buffer'
+    Edit key 'shift page down' to 'Scroll Page Down'
 
 My eyes are getting old.
 
     Go to Terminal > Preferences > Basic Profile > Text > Size
     Choose 14 point.
-
 
 Use a picture folder for the desktop background and screen saver:
 
