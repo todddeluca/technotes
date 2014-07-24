@@ -86,11 +86,20 @@ latest formulas from the homebrew library:
 
     brew update
 
+Tap some kegs we use to get various homebrew formulae.
+
+    # For gcc-4.2, needed to install ruby versions < 1.9.3
+    brew tap homebrew/dupes
+    # For older versions of grails
+    brew tap homebrew/versions
+    # For kalign, blast, paml
+    brew tap homebrew/science
+    
+
 Install gcc-4.2 in case you need to install an older (`< 1.9.3`) version of
 ruby.  As of Mountain Lion, OS X does not ship with gcc-4.2.  This requires
 tapping the dupes homebrew formula repository:
 
-    brew tap homebrew/dupes
     brew install apple-gcc42
     # Get gcc and gfortran (for scientific computing)
     # fortran is useful for scientific computing.
@@ -147,7 +156,6 @@ Some recommendations come from https://github.com/skwp/dotfiles.
     brew install macvim --override-system-vim
 
     # install NCBI BLAST, PAML and Kalign, which are used by RSD
-    brew tap homebrew/science
     brew install blast
     brew install paml
     brew install kalign
@@ -155,9 +163,19 @@ Some recommendations come from https://github.com/skwp/dotfiles.
     # install node.js and grunt for reveal.js markdown slideshow app
     brew install node
 
-    # install maven and grails for java development and deployment
-    brew linkapps
+    # install maven and gradle for java development and deployment
+    brew install gradle
+    brew install maven
 
+    # install some languages used at DDC
+    brew install scala210
+    brew install groovy
+    brew install scala
+
+    # install local instance of hadoop for testing cascading workflows
+    brew install hadoop
+
+    brew linkapps
 
 # Node NPM Installs
 
@@ -399,7 +417,19 @@ you also need to download a 64-bit version of libdvdcss and directs you to:
     http://download.videolan.org/libdvdcss/last/macosx/
 
 
-# Install Spark
+# Install SequelPro
+
+SequelPro is a useful GUI for interacting with MySQL (and other?) databases.
+
+Download the latest .dmg at:
+
+http://www.sequelpro.com/download
+
+Move the app to the applications dir.
+
+
+
+# Install Spark or Quicksilver
 
 I use Spark to map keystrokes to actions, particularly to map <ctrl><option>z
 to my window zooming script, `~/bin/Zoom_Frontmost_Windows_Fullscreen.scpt`
@@ -415,6 +445,19 @@ Now C-O-z to zoom windows.  In Spark:
     Shortcut > <ctrl><option>z.  
     Name > ZoomFrontmostWindows.  
     File > Choose ... > ~/bin/Zoom_Frontmost_Windows_Fullscreen.scpt.
+
+
+Download Quicksilver at: 
+http://qsapp.com/download.php
+
+Configure Quicksilver Preferences:
+
+Catalog > Scripts > Select "Scripts (All Users)"
+Catalog > Custom > Add ("+"), then choose ~/bin dir and set "Include Contents" to "Folder Contents"
+Triggers > Custom Triggers
+  - Add ("+") HotKey
+  - Choose Zoom_Frontmost_Windows_Fullscreen.scpt and the (default) Run action.
+  - Click the Trigger column of the new trigger and set the hotkey to ctrl-option-z
 
 
 # Install X11/XQuartz
