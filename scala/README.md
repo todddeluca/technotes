@@ -2,14 +2,14 @@
 
 
 
-## Scala REPL Using Maven Dependencies
+## Using the Scala REPL With Maven
 
 Source:
 
 - http://stackoverflow.com/questions/15666425/scala-repl-how-to-add-remote-maven-repository-to-scala-repl-classpath
 - http://scala-tools.org/mvnsites/maven-scala-plugin/usage.html
 
-Add the plugin to your pom.xml:
+Add `maven-scala-plugin` to your pom.xml:
 
     <project>
       ...
@@ -68,10 +68,4 @@ From the console, for example, you can import and play with packages:
     scala> val uriVal: Uri = null
     scala> uriVal.protocol
     java.lang.NullPointerException
-
-
-
-
-
-
 

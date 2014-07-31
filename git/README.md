@@ -209,6 +209,12 @@ For more information see:
 
 - https://help.github.com/articles/why-is-git-always-asking-for-my-password
 
+Delete all stale remote-tracking branches under origin. These stale branches
+have already been removed from the remote repository referenced by origin, but
+are still locally available in "remotes/origin":
+
+    git remote prune origin
+
 
 
 ## PUSHING
