@@ -175,13 +175,16 @@ Some recommendations come from https://github.com/skwp/dotfiles.
     # install local instance of hadoop for testing cascading workflows
     brew install hadoop
 
+    brew install jq # Like awk/sed/grep for json.
+
     brew linkapps
 
 # Node NPM Installs
 
     # Reveal.js markdown slideshow app depends on Grunt CLI (and node.js)
     npm install -g grunt-cli
-
+    npm install git+https://github.com/parmentf/xml2json.git
+    npm install --global xml2json  // converts xml to json.  Great with jq.
 
 # Vagrant and Virtualbox
 
