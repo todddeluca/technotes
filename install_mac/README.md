@@ -219,6 +219,13 @@ https://www.google.com/intl/en/chrome/browser/
 Also install "GoogleVoiceAndVideoSetup.dmg", the Hangouts video and voice
 chatting plugin, needed for chatting and using Google Voice to make calls.
 
+## Install Postman Chrome App
+
+It can be used to interact with REST APIs more easily.
+
+In Chrome, go to chrome://apps/, choose "Store", search for "Postman" and install the Postman - Rest Client by rickreation.
+
+
 # Install Adobe Reader
 
 This is so I can read and sign adobe forms.
