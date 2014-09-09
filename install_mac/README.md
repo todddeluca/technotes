@@ -547,7 +547,10 @@ Install packages for python3:
     pip3 install requests
     # used in ~/bin/new_oist_careers
     pip3 install beautifulsoup4
-
+    # A lovely command line interface package
+    pip3 install click
+    # Python Subprocesses for Humans
+    pip3 install envoy
 
 # Install local (non-pypi/github) python packages
 

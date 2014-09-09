@@ -487,6 +487,7 @@ Save and close the file. This will squash these commits together into one commit
 ## REVERT A FILE
 
 http://norbauer.com/notebooks/code/notes/git-revert-reset-a-single-file
+http://stackoverflow.com/questions/215718/reset-or-revert-a-specific-file-to-a-specific-revision-using-git
 
 If you want to throw out the changes in the working copy of a file and revert (in the language of subversion/svn) to the version in the index do this:
 
@@ -496,7 +497,9 @@ The `--` is there to avoid accidentally checking out a branch in case the branch
 
     git checkout <filename>
 
+Revert/reset a file to a previous commit:
 
+    git checkout <commit-hash> <filename>
 
 ## EXPORT A REPOSITORY
 
