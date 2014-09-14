@@ -214,9 +214,15 @@ Install dotfiles, bin dir, vim bundles, and secrets:
 
 I like chrome.
 
+See https://github.com/caskroom/homebrew-cask for a way to install Chrome from the command line.
+
+    brew install caskroom/cask/brew-cask
+    brew cask install google-chrome
+    open ~/Applications/"Google Chrome.app"
+
 https://www.google.com/intl/en/chrome/browser/
 
-Also install "GoogleVoiceAndVideoSetup.dmg", the Hangouts video and voice
+Deprecated?  Install "GoogleVoiceAndVideoSetup.dmg", the Hangouts video and voice
 chatting plugin, needed for chatting and using Google Voice to make calls.
 
 ## Install Postman Chrome App
