@@ -1,23 +1,19 @@
 
+# Python Packaging
 
-There are several ways to package and distribute projects:
+There are many ways to package and share code in python.  The following page gives an overview:
 
-- distutils, the original way.
-- setuptools, improves upon distutils.
-- distribute, improves upon setuptools.
+https://python-packaging-user-guide.readthedocs.org/en/latest/index.html
 
-All of these methods use a 'setup.py' script for building packages, running
-tests, and for registering and uploading packages to pypi.python.org.
+The packaging landscape in python is rapidly evolving, so one should be
+skeptical of older information.  
 
-There is a new way of configuring packages called `distutils2` in Python2.7 and
-`packaging` in Python3.3 which is not yet ready (as of Summer 2012) for
-primetime in my opinion because `pip` does not support it.
+The best tool for packaging and distributing typical projects:
 
-An old way to install packages is to download and unpack a tarball and then use
-setup.py (which uses distutils, setuptools, or distribute) to install the
-package.  Setuptools introduced easy_install, which helps to automate the 
-process of downloading, unpacking, building, testing, and installing a package.
-However the best way to install packages (in my opinion) is to use `pip`.
+- setuptools, which improves upon distutils.
+
+This tool (and distutils) use a 'setup.py' script for building packages,
+running tests, and for registering and uploading packages to pypi.python.org.
 
 So there are layers of competing technologies out there.  Currently my simple
 answer is as follows:
@@ -25,7 +21,7 @@ answer is as follows:
 - Use `pip` to install packages.
 - Use `virtualenv` to create isolated environments in which to install
   packages, so projects avoid having incompatible version problems.
-- Use `distribute` with `setup.py` when creating your own packages.
+- Use `setuptools` with `setup.py` when creating your own packages.
 
 Guides for python packaging:
 
@@ -33,13 +29,22 @@ Guides for python packaging:
 - http://docs.python.org/dev/packaging/tutorial.html
 - http://packages.python.org/Distutils2/
 
-The notes below are divided into Packaging, Distribution, and Installation
+The notes below are divided into Installation, Distribution, and Packaging
 sections.
 
 
-# Installation
+## Installation
 
-## Installing Packages Directly From GitHub Using Pip
+Use pip to download and install packages.
+
+An old way to install packages is to download and unpack a tarball and then use
+setup.py (which uses distutils or setuptools) to install the
+package.  Setuptools introduced easy_install, which helps to automate the 
+process of downloading, unpacking, building, testing, and installing a package.
+However the best way to install packages (in my opinion) is to use `pip`.
+
+
+### Installing Packages Directly From GitHub Using Pip
 
 According to pip-1.2.1, the format for a VCS url is '<vcs>+<protocol>://<url>'.
 For git, <vcs> = 'git'.  The <protocol> can be 'git', 'http', 'https', or
@@ -54,14 +59,16 @@ matter:  "... you have to include #egg=Package so pip knows what to expect at
 that URL."  And if you specify the egg name, you can uninstall packages with
 their urls.  See the example below.
 
-### Informative Pages
+
+#### Informative Pages
 
 - http://www.pip-installer.org/en/latest/requirements.html
 - http://www.pip-installer.org/en/latest/requirements.html#git
 - http://stackoverflow.com/questions/5008162/install-non-editable-tag-branch-from-git-repo-with-pip?rq=1
 - http://stackoverflow.com/questions/4830856/is-it-possible-to-use-pip-to-install-a-package-from-a-private-github-repository?rq=1
 
-### Examples
+
+#### Examples
 
 Installing from a private github repo.  Use "git+ssh" proto and set the username:
 
@@ -112,9 +119,15 @@ Uninstalling using a github URL requires specifying the egg naeme.  For example:
     ImportError: No module named daemoncmd
 
 
-# Distribution
 
-## Using PyPI, the Python Packaging Index, to Distribute Packages
+## Distribution
+
+Use a setup.py file to package, register, and upload files to
+[PyPI](https://pypi.python.org/pypi).  This makes the package available to the
+global python community.
+
+
+### Using PyPI, the Python Packaging Index, to Distribute Packages
 
 The Python Package Index is a repository of software for the Python programming
 language.  It is like CPAN for perl or CRAN for R.  Anyone can register their
@@ -140,7 +153,7 @@ Someone who wanted to install reciprocal smallest distance version 1.1 could do 
 
     pip install reciprocal_smallest_distance==1.1
 
-## Using GitHub to Distribute Packages
+### Using GitHub to Distribute Packages
 
 If you use git, it can be convenient to use GitHub as a remote host for your
 repository.  Assuming your repository is structured as a package, with a
@@ -167,31 +180,17 @@ tarball, as required by PyPI.
 
 
 
-# Data in Package
+## Packaging
 
-## Adding Data to a Package
-
-http://docs.python.org/2/distutils/setupscript.html#installing-package-data
-
-To install data files along with a package, using `package_data` in setup.py.
-
-## Accessing Data in a Package
-
-http://peak.telecommunity.com/DevCenter/PkgResources#basic-resource-access
-
-To access data files installed with a package, use the `pkg_resources` module.
-
-
-# Packaging
-
-Use `distribute` for packaging.
 
 Create a `setup.py` file following the instructions on these pages:
 
 - http://packages.python.org/distribute/setuptools.html
 - http://pypi.python.org/pypi/distribute#quick-help-for-developers
+- http://click.pocoo.org/3/setuptools/#setuptools-integration
 
-## Specifying modules and packages in setup.py
+
+### Specifying modules and packages in setup.py
 
 In the setup() function call, use py_modules to specify modules:
 
@@ -211,9 +210,23 @@ Use `packages` to specify packages to be installed and consider using the
     )
 
 
-## Specifying entry points (executables) in packages
+### Adding Data to a Package
 
-If you use setuptools or distribute, you can have it automatically create an
+http://docs.python.org/2/distutils/setupscript.html#installing-package-data
+
+To install data files along with a package, using `package_data` in setup.py.
+
+### Accessing Data in a Package
+
+http://peak.telecommunity.com/DevCenter/PkgResources#basic-resource-access
+
+To access data files installed with a package, use the `pkg_resources` module.
+
+
+
+### Specifying entry points (executables, scripts) in packages
+
+If you use setuptools, you can have it automatically create an
 executable that invokes a function (or other entry point) in your package.
 This is a convenient and idiomatic way to interface with your package via a
 command line interface (CLI).  Here are some pages describing how to create
@@ -246,40 +259,37 @@ And here is a bit from pip's setup.py (https://github.com/pypa/pip/blob/develop/
 This points to the `main()` function in the `pip` package.  From there the function takes over parsing command line arguments, etc.
 
 
-## Using Distutils2 for packaging
+Below are some entrypoints examples from the [Click](http://click.pocoo.org/3/setuptools/#setuptools-integration) project.  Here are the contents of a setup.py for a module package:
 
-In 2012, distutils2/packaging are the future of python packaging.  They mostly
-work, but uploading a distribution to pypi with distutils2 is broken (as of
-2012/05/26), and pip does not support installing setup.cfg packages.  So
-they have a way to go before primetime.
+    from setuptools import setup
 
-### Creating a package
+    setup(
+        name='yourscript',
+        version='0.1',
+        py_modules=['yourscript'],
+        install_requires=[
+            'Click',
+        ],
+        entry_points='''
+            [console_scripts]
+            yourscript=yourscript:cli
+        ''',
+    )
 
-Initially create setup.cfg via an interactive script
+Here are the contents of a setup.py for a, um, package package:
 
-    cd $PACKAGE_DIR
-    pysetup create
+    from setuptools import setup, find_packages
 
-Add package dependencies to setup.cfg in the metadata requires-dist field.
-
-    $EDITOR setup.cfg
-
-
-### Installing a package
-
-    cd $PACKAGE_DIR
-    pysetup install
-
-
-### Creating a source distribution
-
-    cd $PACKAGE_DIR
-    pysetup run sdist
-
-### Create a source distribution, register and upload it to pypi.
-
-    cd $PACKAGE_DIR
-    pysetup run sdist register upload
-
-
-
+    setup(
+        name='yourpackage',
+        version='0.1',
+        packages=find_packages(),
+        include_package_data=True,
+        install_requires=[
+            'Click',
+        ],
+        entry_points='''
+            [console_scripts]
+            yourscript=yourpackage.scripts.yourscript:cli
+        ''',
+    )
