@@ -238,6 +238,12 @@ Push a new branch to a remote repository (creating new remote branch):
     git push origin ${branch}
 
 
+Create a new branch in a remote repository from an existing local branch, and
+set up the local branch to track the remote branch:
+
+    git push --set-upstream origin $BRANCH
+
+
 ## DELETING BRANCHES
 
 Delete a remote branch from origin:
@@ -368,7 +374,7 @@ Does it work? it works
 http://www.zorched.net/2008/04/14/start-a-new-branch-on-your-remote-git-repository/
 http://stackoverflow.com/questions/520650/how-do-you-make-an-existing-git-branch-track-a-remote-branch
 http://stackoverflow.com/questions/1519006/git-how-to-create-remote-branch
-http://book.git-scm.com/4_tracking_branches.html
+http://git-scm.com/book/en/Git-Branching-Remote-Branches
 
 Create a local branch
 
@@ -390,6 +396,11 @@ Create a new local branch which tracks an existing remote branch.
     # or
     git fetch origin ${branch}
     git checkout ${branch}
+
+
+From an existing local branch, create a new remote branch and track it:
+
+    git push --set-upstream origin $BRANCH
 
 Make an existing local branch track an existing remote branch
 
