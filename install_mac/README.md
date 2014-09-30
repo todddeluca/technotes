@@ -478,7 +478,7 @@ Triggers > Custom Triggers
 
 # Install X11/XQuartz
 
-Python, IPython, among other programs, depends on X11, but it does not ship
+R, Python, IPython, among other programs, depends on X11, but it does not ship
 with OS X 10.8 Mountain Lion.  Install it by going to:
 http://xquartz.macosforge.org/landing/
 and clicking the download link for
@@ -500,11 +500,9 @@ From the install, the id for customer service is 03334-010-0110005-02060.
 
 # Install R and R Studio
 
-Download R installer from
-http://cran.r-project.org/bin/macosx/
-Run the installer.
+Install R:
 
-Downloaded and installed R-2.15.2.
+    brew install r
 
 Download RStudio Desktop installer from
 http://www.rstudio.com/ide/download/desktop
