@@ -9,8 +9,8 @@ There are a (growing) number of resources for automating the setup of a Mac OS X
 - "Automating the Setup of My Perfect Developer Environment on OSX 10.8 Mountain Lion" http://vanderveer.be/blog/2013/01/02/automating-the-setup-of-my-perfect-developer-environment-on-osx-10-dot-8-mountain-lion/
 - Mac Development Ansible Playbook: https://github.com/geerlingguy/mac-dev-playbook
 - Battleschool: http://spencer.gibb.us/blog/2014/02/03/introducing-battleschool/
-- Boxen
--
+- Boxen, how github maintains their laptops.
+- http://lapwinglabs.com/blog/hacker-guide-to-setting-up-your-mac?utm_source=hackernewsletter&utm_medium=email&utm_term=fav
 
 # Install Seil (formerly PCKeyboardHack)
 
