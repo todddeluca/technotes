@@ -104,13 +104,13 @@ Step 3: Merge the changes and update the server:
 
 ## CLONING
 
-The wrong way to clone from github.
-
-    git clone https://github.com/todddeluca/boto
-
 The RIGHT way to clone from github, b/c it can do keyfile authentication.
 
     git clone git@github.com:todddeluca/boto.git
+
+The wrong way to clone from github for key pair authentication:
+
+    git clone https://github.com/todddeluca/boto
 
 
 ## REMOTES
