@@ -1,5 +1,89 @@
 
 
+## Language Tutorials and Awesome Links
+
+It's a shame that the official documentation on the scala website seems
+incomprehensible and incomplete to novices like me.  Anyway, here are some
+links by people who do a better job of explaining aspects of the Scala language:
+
+http://blog.bruchez.name/2011/10/scala-partial-functions-without-phd.html
+
+## SBT
+
+The official tutorial does a wonderful job of explaining basic SBT concepts:
+http://www.scala-sbt.org/0.13/tutorial/
+
+Project Creation
+
+https://github.com/softprops/np
+
+> Steps it took to get this project started
+> 
+>     $ touch build.sbt
+>     $ mkdir -p src/{main,test}/scala
+>     $ e build.sbt # fill in the basics (name, organization, version)
+>     $ touch README.md && e README.md
+>     $ sbt
+>     # start coding
+
+
+## Scala Style Guide
+
+http://docs.scala-lang.org/style/indentation.html
+
+
+## String Manipulation
+
+String interpolation in Scala 2.10 (String variable substitution)
+http://alvinalexander.com/scala/string-interpolation-scala-2.10-embed-variables-in-strings
+http://docs.scala-lang.org/overviews/core/string-interpolation.html
+
+
+## File I/O
+
+http://alvinalexander.com/scala/scala-how-open-read-files-scala-examples
+
+Iterating over file lines:
+
+    import scala.io.Source
+    
+    val filename = "fileopen.scala"
+    for (line <- Source.fromFile(filename).getLines()) {
+      println(line)
+    }
+
+Reading file as a String:
+
+    val fileContents = Source.fromFile(filename).getLines.mkString
+
+
+Reading file as a List:
+
+    val fileLines = io.Source.fromFile("Colors.scala").getLines.toList
+    fileLines.foreach(println)
+
+Handling Exceptions:
+
+    import scala.io.Source
+    import java.io.{FileReader, FileNotFoundException, IOException}
+    
+    val filename = "no-such-file.scala"
+    try {
+      for (line <- Source.fromFile(filename).getLines()) {
+        println(line)
+      }
+    } catch {
+      case ex: FileNotFoundException => println(ex)
+      case ex: IOException => println("Had an IOException trying to read that file")
+    }
+
+
+## Network and HTTP I/O
+
+How to download URL contents to a String or file
+http://alvinalexander.com/scala/scala-how-to-download-url-contents-to-string-file
+
+
 ## Subprocesses / Subcommands
 
 The equivalent of the python `subprocess` module is `scala.sys.process`.
@@ -10,6 +94,9 @@ http://stackoverflow.com/questions/6013415/how-does-the-scala-sys-process-from-s
 
 Guide to Process (the old SBT version):
 http://www.scala-sbt.org/release/docs/Process.html
+
+How to execute (exec) external system commands in Scala
+http://alvinalexander.com/scala/scala-execute-exec-external-system-commands-in-scala
 
 
 ## Command Line Interfaces
@@ -58,7 +145,7 @@ Write a simplest build.sbt:
 
     scalaVersion := "2.9.1"
 
-Test if sbt works well(the shaband line has to be removed before):
+Test if sbt works well(the shabang line has to be removed before):
 
     $ sbt run
     Sun May 19 11:10:13 CST 2013
@@ -76,6 +163,18 @@ Now it can run on machine with only Java but not Scala.
     $ java -jar target/scala-2.9.1/Clock.jar
     Sun May 19 18:27:20 CST 2013
 
+
+## SSH / Remote Commands / Fabric-equivalents
+
+JASSH
+
+https://github.com/dacr/jassh
+
+> High level scala SSH API for easy and fast operations on remote servers.
+> This API is JSCH based. Interfaces are stable. Many helper functions are
+> provided to simplify unix operations ps, ls, cat, kill, find, ..., an other
+> goal of this API is to create an unix abstraction layer (Linux, Aix, Solaris,
+> Darwin, ...).
 
 ## JSON
 
@@ -97,6 +196,10 @@ Supports LINQ-style and XPATH-style queries
 Argonaut
 http://argonaut.io/
 From the scalaz folks.  FP-style json
+
+Json4S
+http://json4s.org/
+This is basically Lift JSON taken out of Lift to free it from Lift's sometimes-slow release cycle.
 
 
 
@@ -178,7 +281,6 @@ https://github.com/typesafehub/config
 Shapeless
 
 https://github.com/milessabin/shapeless
-
 
 
 SBT Revolver
