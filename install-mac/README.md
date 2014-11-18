@@ -179,6 +179,11 @@ Some recommendations come from https://github.com/skwp/dotfiles.
 
     brew linkapps
 
+# Install Go Lang
+
+    brew install go
+    mkdir $HOME/go
+
 # Node NPM Installs
 
     # Reveal.js markdown slideshow app depends on Grunt CLI (and node.js)
@@ -819,6 +824,7 @@ Pandas suggests installing:
 
 # Install IPython and some of its dependencies, Tornado, Pygments, pyzmq
 
+You should have already installed XQuartz and zmq.
 
 Install IPython and its dependencies.  IPython Notebook requires the tornado
 webserver, and zeromq, and requests pygments:
@@ -840,6 +846,19 @@ Learn more about configuration:
 
     ipython config -h
 
+# Install IScala
+
+Install the latest code from github into /usr/local:
+
+    cd /usr/local
+    git clone https://github.com/mattpap/IScala
+    cd IScala
+    sbt compile
+    sbt assembly
+
+Test run the notebook:
+
+    /usr/local/IScala/target/scala-2.11/bin/notebook
 
 # Install rpy2, python bindings for using R from python code.
 

@@ -7,3 +7,6 @@
 - http://www.dugthawts.com/wp-content/uploads/2008/08/ipython-cheat-sheet.txt
 
 
+## Other Languages
+
+- IScala.  https://github.com/mattpap/IScala
