@@ -63,104 +63,26 @@ Or in a single step:
 Source: http://stackoverflow.com/questions/7929369/how-to-rebase-local-branch-with-remote-master
 
 
-## GITHUB FLOW MODEL
+### RESOLVE / FIX A MERGE CONFLICT
 
-See http://scottchacon.com/2011/08/31/github-flow.html.
+If you have a conflict in file.txt
+Edit the file to make it look the way you want, removing conflict markers.
+See git user manual: http://www.kernel.org/pub/software/scm/git/docs/user-manual.html#resolving-a-merge
+Example conflict marker:
 
-So, what is GitHub Flow?
+    <<<<<<< HEAD:file.txt
+    Hello world
+    =======
+    Goodbye
+    >>>>>>> 77976da35a11db4580b80ae27e8d65caf5208086:file.txt
 
-- Anything in the master branch is deployable
-- To work on something new, create a descriptively named branch off of master (ie: new-oauth2-scopes)
-- Commit to that branch locally and regularly push your work to the same named branch on the server
-- When you need feedback or help, or you think the branch is ready for merging, open a pull request
-- After someone else has reviewed and signed off on the feature, you can merge it into master
-- Once it is merged and pushed to master, you can and should deploy immediately
+Then commit the changes:
 
-
-## NVIE PROJECT BRANCHING MODEL
-
-This article makes clear how to branch and merge, including managing releases,
-production, development, and individual features. It includes a pretty picture
-and commands for branching and merging.
-
-http://nvie.com/posts/a-successful-git-branching-model/
-
-Creating a feature branch
-When starting work on a new feature, branch off from the develop branch.
-
-    $ git checkout -b myfeature develop
-    Switched to a new branch "myfeature"
-
-Incorporating a finished feature on develop
-Finished features may be merged into the develop branch definitely add them to
-the upcoming release:
-
-    $ git checkout develop
-    Switched to branch 'develop'
-    $ git merge --no-ff myfeature
-    Updating ea1b82a..05e9557
-    (Summary of changes)
-    $ git branch -d myfeature
-    Deleted branch myfeature (was 05e9557).
-    $ git push origin develop
-
-Creating a release branch
-Release branches are created from the develop branch. For example, say version
-1.1.5 is the current production release and we have a big release coming up.
-The state of develop is ready for the “next release” and we
-have decided that this will become version 1.2 (rather than 1.1.6 or 2.0). So
-we branch off and give the release branch a name reflecting the new version
-number:
-
-    $ git checkout -b release-1.2 develop
-    Switched to a new branch "release-1.2"
-    $ ./bump-version.sh 1.2
-    Files modified successfully, version bumped to 1.2.
-    $ git commit -a -m "Bumped version number to 1.2"
-    [release-1.2 74d9424] Bumped version number to 1.2
-    1 files changed, 1 insertions(+), 1 deletions(-)
-
-Finishing a release branch
-When the state of the release branch is ready to become a real release, some
-actions need to be carried out. First, the release branch is merged into master
-(since every commit on master is a new release by definition, remember). Next,
-that commit on master must be tagged for easy future reference to this
-historical version. Finally, the changes made on the release branch need to be
-merged back into develop, so that future releases also contain these bug fixes.
-
-The first two steps in Git:
-
-    $ git checkout master
-    Switched to branch 'master'
-    $ git merge --no-ff release-1.2
-    Merge made by recursive.
-    (Summary of changes)
-    $ git tag -a 1.2
-
-The release is now done, and tagged for future reference.
-Edit: You might as well want to use the -s or -u <key> flags to sign your tag
-cryptographically.
-
-To keep the changes made in the release branch, we need to merge those back
-into develop, though. In Git:
-
-    $ git checkout develop
-    Switched to branch 'develop'
-    $ git merge --no-ff release-1.2
-    Merge made by recursive.
-    (Summary of changes)
-
-This step may well lead to a merge conflict (probably even, since we have
-changed the version number). If so, fix it and commit.
-
-Now we are really done and the release branch may be removed, since we
-do not need it anymore:
-
-    $ git branch -d release-1.2
-    Deleted branch release-1.2 (was ff452fe).
+    git add file.txt
+    git commit
 
 
-## MERGE A PULL REQUEST
+### MERGE A GITHUB PULL REQUEST
 
 (Citation: this is copied directly from github.com.)
 
@@ -182,13 +104,13 @@ Step 3: Merge the changes and update the server:
 
 ## CLONING
 
-The wrong way to clone from github.
-
-    git clone https://github.com/todddeluca/boto
-
 The RIGHT way to clone from github, b/c it can do keyfile authentication.
 
     git clone git@github.com:todddeluca/boto.git
+
+The wrong way to clone from github for key pair authentication:
+
+    git clone https://github.com/todddeluca/boto
 
 
 ## REMOTES
@@ -383,7 +305,8 @@ Create a local branch
 Create new branch locally and then create a new remote branch and have the local branch track the remote branch.
 
     git checkout -b ${branch} # create local branch
-    git push -u origin ${branch} # simpler
+    git push -u origin ${branch} # push branch to remote and configure remote tracking
+    # alternative push
     git push -u origin ${branch}:${branch} # could push to a differently named remote branch I think
 
 Alternative way to push, which should make all local branches track remote branches on origin, creating remote branches as necessary?
@@ -396,7 +319,6 @@ Create a new local branch which tracks an existing remote branch.
     # or
     git fetch origin ${branch}
     git checkout ${branch}
-
 
 From an existing local branch, create a new remote branch and track it:
 
@@ -525,7 +447,9 @@ clean way is to clone and then remove the .git dir.
 
 
 
-## KEEPING GITHUB FORKS IN SYNC
+## GITHUB
+
+### KEEPING GITHUB FORKS IN SYNC
 
 
 http://stackoverflow.com/questions/1123344/merging-between-forks-in-github
@@ -545,24 +469,23 @@ Push to your repo
     git push origin master
 
 
+## Add an empty directory to a repository
 
-## RESOLVE / FIX A MERGE CONFLICT
+http://stackoverflow.com/questions/115983/how-do-i-add-an-empty-directory-to-a-git-repository
 
-If you have a conflict in file.txt
-Edit the file to make it look the way you want, removing conflict markers.
-See git user manual: http://www.kernel.org/pub/software/scm/git/docs/user-manual.html#resolving-a-merge
-Example conflict marker:
+One way to add an "empty" directory to a git repository is to add a .gitignore
+file to it.  This is useful if you have a secrets directory which you want to
+exist when someone clones the repo, but you do not want your secrets in the
+repo.
 
-    <<<<<<< HEAD:file.txt
-    Hello world
-    =======
-    Goodbye
-    >>>>>>> 77976da35a11db4580b80ae27e8d65caf5208086:file.txt
+To make a directory stay empty (in the repo), create a .gitignore file inside
+that directory that ignores everything except itself:
 
-Then commit the changes:
+    # Ignore everything in this directory
+    *
+    # Except this file
+    !.gitignore
 
-    git add file.txt
-    git commit
 
 
 ## SUBMODULES
@@ -625,19 +548,100 @@ Remove the submodule files/dir.  Note: do NOT add a trailing slash.
     git rm --cached bundle/python.vim
 
 
-## Add an empty directory to a repository
+## NVIE FLOW MODEL
 
-http://stackoverflow.com/questions/115983/how-do-i-add-an-empty-directory-to-a-git-repository
+This article makes clear how to branch and merge, including managing releases,
+production, development, and individual features. It includes a pretty picture
+and commands for branching and merging.
 
-One way to add an "empty" directory to a git repository is to add a .gitignore
-file to it.  
+http://nvie.com/posts/a-successful-git-branching-model/
+
+Creating a feature branch
+When starting work on a new feature, branch off from the develop branch.
+
+    $ git checkout -b myfeature develop
+    Switched to a new branch "myfeature"
+
+Incorporating a finished feature on develop
+Finished features may be merged into the develop branch definitely add them to
+the upcoming release:
+
+    $ git checkout develop
+    Switched to branch 'develop'
+    $ git merge --no-ff myfeature
+    Updating ea1b82a..05e9557
+    (Summary of changes)
+    $ git branch -d myfeature
+    Deleted branch myfeature (was 05e9557).
+    $ git push origin develop
+
+Creating a release branch
+Release branches are created from the develop branch. For example, say version
+1.1.5 is the current production release and we have a big release coming up.
+The state of develop is ready for the “next release” and we
+have decided that this will become version 1.2 (rather than 1.1.6 or 2.0). So
+we branch off and give the release branch a name reflecting the new version
+number:
+
+    $ git checkout -b release-1.2 develop
+    Switched to a new branch "release-1.2"
+    $ ./bump-version.sh 1.2
+    Files modified successfully, version bumped to 1.2.
+    $ git commit -a -m "Bumped version number to 1.2"
+    [release-1.2 74d9424] Bumped version number to 1.2
+    1 files changed, 1 insertions(+), 1 deletions(-)
+
+Finishing a release branch
+When the state of the release branch is ready to become a real release, some
+actions need to be carried out. First, the release branch is merged into master
+(since every commit on master is a new release by definition, remember). Next,
+that commit on master must be tagged for easy future reference to this
+historical version. Finally, the changes made on the release branch need to be
+merged back into develop, so that future releases also contain these bug fixes.
+
+The first two steps in Git:
+
+    $ git checkout master
+    Switched to branch 'master'
+    $ git merge --no-ff release-1.2
+    Merge made by recursive.
+    (Summary of changes)
+    $ git tag -a 1.2
+
+The release is now done, and tagged for future reference.
+Edit: You might as well want to use the -s or -u <key> flags to sign your tag
+cryptographically.
+
+To keep the changes made in the release branch, we need to merge those back
+into develop, though. In Git:
+
+    $ git checkout develop
+    Switched to branch 'develop'
+    $ git merge --no-ff release-1.2
+    Merge made by recursive.
+    (Summary of changes)
+
+This step may well lead to a merge conflict (probably even, since we have
+changed the version number). If so, fix it and commit.
+
+Now we are really done and the release branch may be removed, since we
+do not need it anymore:
+
+    $ git branch -d release-1.2
+    Deleted branch release-1.2 (was ff452fe).
 
 
-To make a directory stay empty (in the repo), create a .gitignore file inside
-that directory that contains four lines:
+## GITHUB FLOW MODEL
 
-    # Ignore everything in this directory
-    *
-    # Except this file
-    !.gitignore
+See http://scottchacon.com/2011/08/31/github-flow.html.
+
+So, what is GitHub Flow?
+
+- Anything in the master branch is deployable
+- To work on something new, create a descriptively named branch off of master (ie: new-oauth2-scopes)
+- Commit to that branch locally and regularly push your work to the same named branch on the server
+- When you need feedback or help, or you think the branch is ready for merging, open a pull request
+- After someone else has reviewed and signed off on the feature, you can merge it into master
+- Once it is merged and pushed to master, you can and should deploy immediately
+
 

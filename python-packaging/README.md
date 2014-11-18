@@ -179,6 +179,29 @@ specific revision without needing to bump the version number and upload a
 tarball, as required by PyPI.
 
 
+## Testing Installation
+
+I like to include a README.md file in my packages (which are also often Github
+Repositories).  However by default these files are not packaged by `python
+setup.py sdist`.  Since I also like my `setup.py` file to slurp in the
+README.md to build its description, this causes pip installation to fail!  Why?
+There is no README.md when the user downloads the tarball.
+
+The fix is easy: Include a MANIFEST.in file that includes *.md files:
+
+    echo 'include *.md *.txt' > MANIFEST.in
+
+Test your package, to make sure that the README.md is being included in the distribution
+
+In your package directory, create a "clean" distribution:
+
+    cd <mypackage>
+    rm -rf dist *.egg-info && python setup.py sdist
+
+In a clean virtualenv, try to install the package:
+
+    rm -rf ~/tmp/venv && virtualenv ~/tmp/venv && ~/tmp/venv/bin/pip install dist/*.tar.gz
+
 
 ## Packaging
 

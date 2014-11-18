@@ -176,7 +176,7 @@ Some recommendations come from https://github.com/skwp/dotfiles.
     brew install hadoop
 
     brew install jq # Like awk/sed/grep for json.
-
+    brew install jsawk # awk for json.  Use by some ddc scripts.
     brew linkapps
 
 # Install Go Lang
@@ -437,6 +437,9 @@ you also need to download a 64-bit version of libdvdcss and directs you to:
 
     http://download.videolan.org/libdvdcss/last/macosx/
 
+# Install MySQL
+
+brew install mysql
 
 # Install SequelPro
 
@@ -713,7 +716,7 @@ password) in the script.
 # Install Markdown renderer from github into the system ruby.
 
 This markdown renderer has some nice extras like fenced code blocks and
-autolinks.  It is used by ~/bin/markdown.pl to render my markdown file, e.g via
+autolinks.  It is used by ~/bin/markdown to render my markdown file, e.g via
 `<leader>mdp` in vim.
 
     gem install redcarpet
