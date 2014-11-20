@@ -41,7 +41,10 @@ keys, etc.):
 
 ### Remove host from known hosts in case the host ip has changed.  
 
-Removing a host from known_hosts can be useful when working with cloud hosts.  When one recreates a vm, s.t. it has a new IP or is a new computer on the same IP, ssh balks.  After removing the host, ssh will ask to add it to the known hosts file instead of failing.
+Removing a host from known_hosts can be useful when working with VMs and cloud
+hosts.  When one recreates a vm, s.t. it has a new IP or is a new computer on
+the same IP, ssh balks.  After removing the host, ssh will ask to add it to the
+known hosts file instead of failing.
 
 Use `ssk-keygen` to remove a host from known_hosts:
 
