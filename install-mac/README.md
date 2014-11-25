@@ -177,7 +177,24 @@ Some recommendations come from https://github.com/skwp/dotfiles.
 
     brew install jq # Like awk/sed/grep for json.
     brew install jsawk # awk for json.  Use by some ddc scripts.
+
     brew linkapps
+
+# Install Docker
+
+Use homebrew:
+
+    brew install docker
+    brew install boot2docker
+
+To have launchd start boot2docker at login:
+
+    ln -sfv /usr/local/opt/boot2docker/*.plist ~/Library/LaunchAgents
+
+Then to load boot2docker now:
+
+    launchctl load ~/Library/LaunchAgents/homebrew.mxcl.boot2docker.plist
+
 
 # Install Go Lang
 
