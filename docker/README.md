@@ -3,6 +3,17 @@
 https://jira.dealer.com/browse/SHARKNADO-2814
 
 
+## Mac OS X
+
+http://www.alexecollins.com/first-steps-with-docker/
+
+Forward a port from localhost to the boot2docker VirtualBox VM.  For example,
+if we expose a container port as the host port 8080, and now we want to expose
+that as localhost:8080 on our laptop:
+
+    VBoxManage controlvm boot2docker-vm natpf1 "8080,tcp,127.0.0.1,8080,,8080"
+
+
 ## Understanding Docker
 
 https://docs.docker.com/introduction/understanding-docker/
