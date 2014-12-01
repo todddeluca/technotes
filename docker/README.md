@@ -26,8 +26,58 @@ Concepts:
 
 Dockerfile
 
-Layer
+Docker images are then built from these base images using a simple, descriptive set of steps we call instructions. Each instruction creates a new layer in our image. Instructions include actions like:
 
+- Run a command.
+- Add a file or directory.
+- Create an environment variable.
+- What process to run when launching a container from this image.
+
+
+## Container Management
+
+Managing the lifecycle of a set of containers
+
+### Libswarm
+
+https://gist.github.com/aaronfeng/221f853350ce04976036
+https://github.com/docker/libswarm
+
+
+### Fig
+
+Awesome!
+Fast, isolated development environments using Docker.
+http://www.fig.sh/
+Fig is a vagrant-esque tool for running a set of docker applications and linking them together on localhost.
+
+### Dynamic Reverse Proxy
+
+Using docker-gen, we can generate Nginx config files automatically and reload nginx when they change. The same approach can also be used for docker log management.
+http://jasonwilder.com/blog/2014/03/25/automated-nginx-reverse-proxy-for-docker/
+
+How To Use the Ambassador Pattern to Dynamically Configure Services on CoreOS
+https://www.digitalocean.com/community/tutorials/how-to-use-the-ambassador-pattern-to-dynamically-configure-services-on-coreos
+
+Link via an Ambassador Container
+http://docs.docker.com/articles/ambassador_pattern_linking/
+
+
+## Volumes
+
+Advanced Docker Volumes
+http://crosbymichael.com/advanced-docker-volumes.html
+
+A bit dated (over a year old) but gives the an interesting example of a
+minecraft server container with a VOLUME for its data, a webserver container
+with a volume for its static website, and a transformer container that is
+run using --volumes-from options for the minecraft and web servers and then
+it transforms the minecraft map data into static HTML files that render the
+world.  To update the website showing the world, just run the transformer
+container, hooking it up to the volumes of each other container.
+
+Here the volume of a container is like a known location that other containers
+can read from or write to. 
 
 
 ## Jenkins Integration
