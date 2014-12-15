@@ -79,6 +79,12 @@ container, hooking it up to the volumes of each other container.
 Here the volume of a container is like a known location that other containers
 can read from or write to. 
 
+http://stackoverflow.com/questions/24308760/running-app-inside-docker-as-non-root-user
+This SO post points out that a VOLUME is something that is created at run time,
+not build time.  Any work that you do in the VOLUME at build time (like
+changing permissions/ownership, installing files, etc.) will be discarded when
+the volume is mounted at runtme.
+
 
 ## Jenkins Integration
 
