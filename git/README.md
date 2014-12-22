@@ -168,6 +168,14 @@ set up the local branch to track the remote branch:
 
 ## DELETING BRANCHES
 
+Check if branch `myfeature` contains any commits that have not been merged into `master`:
+
+    $ git log master..myfeature
+
+Alternatively, check if the commits on branch `branch-to-delete` are contained in any other branches:
+
+    $ git branch --contains branch-to-delete
+
 Delete a remote branch from origin:
 
     git push origin :branchname
