@@ -3,34 +3,17 @@
 
 There are many ways to package and share code in python.  The following page gives an overview:
 
-https://python-packaging-user-guide.readthedocs.org/en/latest/index.html
+https://packaging.python.org/en/latest/
 
-The packaging landscape in python is rapidly evolving, so one should be
-skeptical of older information.  
-
-The best tool for packaging and distributing typical projects:
-
-- setuptools, which improves upon distutils.
-
-This tool (and distutils) use a 'setup.py' script for building packages,
-running tests, and for registering and uploading packages to pypi.python.org.
-
-So there are layers of competing technologies out there.  Currently my simple
-answer is as follows:
+The current (2014/12) recommendations:
 
 - Use `pip` to install packages.
-- Use `virtualenv` to create isolated environments in which to install
-  packages, so projects avoid having incompatible version problems.
-- Use `setuptools` with `setup.py` when creating your own packages.
-
-Guides for python packaging:
-
-- http://guide.python-distribute.org/
-- http://docs.python.org/dev/packaging/tutorial.html
-- http://packages.python.org/Distutils2/
+- Use `virtualenv` to create isolated environments for packages applications depend on.
+- Use `twine` to upload packages to PyPI.
+- Use `setuptools` to create package distributions.
 
 The notes below are divided into Installation, Distribution, and Packaging
-sections.
+sections.  They are probably outdated.
 
 
 ## Installation
