@@ -180,6 +180,7 @@ Some recommendations come from https://github.com/skwp/dotfiles.
 
     brew linkapps
 
+
 # Install Docker
 
 Use homebrew:
@@ -230,6 +231,23 @@ Install dotfiles, bin dir, vim bundles, and secrets:
     ./install.sh copy
     ./install.sh secrets
     source ~/.bash_profile
+
+
+## Install Spark
+
+For local development, download spark 1.3.1 with hadoop 2.6 support, since that is what CDH 5.4 is using, not that it matters.
+
+Unpack and install:
+
+    cd ~/Downloads
+    tar xvzf spark-1.3.1-bin-hadoop2.6.tgz
+    cp -pr spark-1.3.1-bin-hadoop2.6 /usr/local/
+
+Add to path:
+
+    echo '# Add Spark to Path
+    export PATH="$PATH:/usr/local/spark-1.3.1-bin-hadoop2.6/bin"
+    ' >> ~/.bashrc
 
 
 # Install Google Chrome
