@@ -5,12 +5,27 @@
 
     mvn dependency:tree
 
-## Running without tests
+## Build a submodule and any modules it depends on
+
+    mvn install -pl web-ana-hadoop-pixall -am
+
+
+## Testing
+
+Running without tests
 
     mvn -skipTests=true
 
+Run a single cascading unit test from Maven:
 
-## Run a specific test
+    mvn -Dtest=com.dealer.analytics.web.cascading.PixAllSessionizationFlowTest#shouldTrackManagedServicesPageViews test
+
+Run a single cascading unit test from IntelliJ:
+
+1. Right click on the test declaration line and select 'Run Maven > Test theTestName'
+
+
+### Run a specific test
 
 http://maven.apache.org/surefire/maven-surefire-plugin/examples/single-test.html
 
@@ -27,6 +42,7 @@ You may also use patterns to run a number of tests:
 And you may use multiple names/patterns, separated by commas:
 
     mvn -Dtest=TestSquare,TestCi*le test
+
 
 ## Run Tomcat Webapp Locally
 
