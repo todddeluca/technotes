@@ -134,7 +134,7 @@ Some recommendations come from https://github.com/skwp/dotfiles.
     brew install ruby-build
 
     # install python (and pip and distribute):
-    brew install python
+    brew install python@2 --with-tcl-tk
     brew install python3
     # Mercurial (distributed version control) is useful for contributing to python, etc.  Depends on docutils.
     pip-2.7 install docutils

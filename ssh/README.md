@@ -74,7 +74,7 @@ The solution was to remove all identities from ssh-agent. Then github got the ri
 ## SSH Tunneling
 
 - http://www.popcornfarmer.com/2009/01/ssh-tunneling-tutorial/
-- http://nerderati.com/2011/03/simplify-your-life-with-an-ssh-config-file/
+- https://nerderati.com/2011/03/17/simplify-your-life-with-an-ssh-config-file/
 
 
 ## The SSH Config File
